@@ -93,7 +93,23 @@ nx.draw(
 
 plt.title("Bayesian Network: Alarm Problem")
 plt.show()
+# Initialize Gibbs Sampling
+gibbs_sampler = GibbsSampling(network)
 
+# Number of samples
+num_samples = 10000
+
+# Perform sampling
+samples = gibbs_sampler.sample(size=num_samples)
+
+# Query variable
+query_variable = 'Burglary'
+
+# Approximate probability
+query_result = samples[query_variable].value_counts(normalize=True)
+# Print result
+print(f"\nApproximate Probabilities of {query_variable}:")
+print(query_result)
 
 
 ```
